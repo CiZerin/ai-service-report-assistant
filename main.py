@@ -2,13 +2,13 @@ from priority import get_priority
 from report_generator import create_report
 from file_writer import save_report
 
-engineer = input("Enter engineer name: ")
-device = input("Enter device model: ")
-serial = input("Enter serial number: ")
-issue = input("Enter issue: ")
-status = input("Enter current status: ")
-action_taken = input("Enter action taken: ")
-next_step = input("Enter next step: ")
+engineer = input("Enter engineer name: ").strip()
+device = input("Enter device model: ").strip()
+serial = input("Enter serial number: ").strip()
+issue = input("Enter issue: ").strip()
+status = input("Enter current status: ").strip()
+action_taken = input("Enter action taken: ").strip()
+next_step = input("Enter next step: ").strip()
 
 service_case = {
     "engineer": engineer,
