@@ -1,5 +1,5 @@
 
-=== Service report ===
+=== SERVICE REPORT ===
 Engineer: Artem
 Device: IBM DS3500
 Serial: 78N6734
@@ -8,4 +8,3 @@ Status: Check FRU part list
 Priority: NORMAL
 Action taken: Checked disk status and verified error logs
 Next step: Replace failed disk
-======================
