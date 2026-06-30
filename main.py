@@ -23,6 +23,6 @@ service_case = {
 service_case["priority"] = get_priority(service_case["issue"])
 report = create_report(service_case)
 
-save_report("service_report.txt", report)
+save_report("reports/service_report.txt", report)
 
 print("Report saved to service_report.txt")

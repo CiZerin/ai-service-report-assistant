@@ -1,10 +1,7 @@
-
-=== SERVICE REPORT ===
 Engineer: Artem
 Device: IBM DS3500
 Serial: 78N6734
 Issue: Power supply failed
 Status: Check PSU status
-Priority: HIGH
 Action taken: Verified logs and PSU LED
 Next step: Replace power supply

@@ -1,0 +1,10 @@
+
+=== SERVICE REPORT ===
+Engineer: Artem
+Device: IBM DS
+Serial: 11X112233
+Issue: Disk failed
+Status: New disk order
+Priority: NORMAL
+Action taken: Logs checked
+Next step: Replace disk
