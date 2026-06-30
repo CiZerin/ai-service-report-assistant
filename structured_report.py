@@ -4,6 +4,7 @@ def create_structured_report(service_case):
         "device": service_case["device"],
         "serial": service_case["serial"],
         "problem": service_case["issue"],
+        "symptoms": [service_case["issue"]],
         "status": service_case["status"],
         "priority": service_case["priority"],
         "actions_taken": [service_case["action_taken"]],

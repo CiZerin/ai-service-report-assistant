@@ -3,10 +3,13 @@
     "device": "Server",
     "serial": "11X2233",
     "problem": "Disk failed",
+    "symptoms": [
+        "Disk failed"
+    ],
     "status": "Disk stop",
     "priority": "NORMAL",
     "actions_taken": [
-        "Logs checked"
+        "Logs check"
     ],
     "recommended_next_steps": [
         "Replace disk"
