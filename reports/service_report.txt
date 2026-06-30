@@ -1,10 +1,10 @@
 
 === SERVICE REPORT ===
 Engineer: Artem
-Device: IBM DS
-Serial: 11X112233
+Device: IBM DS3500
+Serial: 78N1122
 Issue: Disk failed
-Status: New disk order
+Status: Checked storage status
 Priority: NORMAL
-Action taken: Logs checked
-Next step: Replace disk
+Action taken: Verified error logs
+Next step: Replace failed disk
