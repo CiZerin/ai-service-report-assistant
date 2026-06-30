@@ -1,5 +1,6 @@
 from priority import get_priority
 from report_generator import create_report
+from file_writer import save_report
 
 service_case = {
     "engineer": "Artem",
@@ -14,7 +15,6 @@ service_case = {
 service_case["priority"] = get_priority(service_case["issue"])
 report = create_report(service_case)
 
-with open("service_report.txt", "w") as file:
-    file.write(report)
+save_report("service_report.txt", report)
 
 print("Report saved to service_report.txt")
