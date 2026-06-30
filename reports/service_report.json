@@ -9,7 +9,7 @@
     "status": "Disk stop",
     "priority": "NORMAL",
     "actions_taken": [
-        "Logs check"
+        "Log check"
     ],
     "recommended_next_steps": [
         "Replace disk"

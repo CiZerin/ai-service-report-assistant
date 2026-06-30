@@ -6,5 +6,5 @@ Serial: 11X2233
 Issue: Disk failed
 Status: Disk stop
 Priority: NORMAL
-Action taken: Logs check
+Action taken: Log check
 Next step: Replace disk

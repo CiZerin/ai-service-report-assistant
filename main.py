@@ -2,6 +2,7 @@ from priority import get_priority
 from report_generator import create_report
 from file_writer import save_report, save_json_report
 from structured_report import create_structured_report
+from validator import has_empty_required_fields
 
 engineer = input("Enter engineer name: ").strip()
 device = input("Enter device model: ").strip()
@@ -20,6 +21,10 @@ service_case = {
     "action_taken": action_taken,
     "next_step": next_step
 }
+
+if has_empty_required_fields(service_case):
+    print("Warning: Some required fields are empty. Report was not created.")
+    exit()
 
 service_case["priority"] = get_priority(service_case["issue"])
 report = create_report(service_case)
