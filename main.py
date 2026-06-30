@@ -1,6 +1,6 @@
 from priority import get_priority
 from report_generator import create_report
-from file_writer import save_report
+from file_writer import save_report, save_json_report
 from structured_report import create_structured_report
 
 engineer = input("Enter engineer name: ").strip()
@@ -26,6 +26,7 @@ report = create_report(service_case)
 structured_report = create_structured_report(service_case)
 
 save_report("reports/service_report.txt", report)
+save_json_report("reports/service_report.json", structured_report)
 
 print(structured_report)
-print("Report saved to service_report.txt")
+print("Reports saved to reports folder")
