@@ -1,0 +1,8 @@
+Engineer: Artem
+Device: Label Printer
+Serial: LP-1001
+Issue: Printer has minor alignment issue
+Status: Device is working, print quality slightly reduced
+Action taken: Checked printer settings and cleaned print head
+Next step: Monitor print quality during next shift
+Expected priority: LOW

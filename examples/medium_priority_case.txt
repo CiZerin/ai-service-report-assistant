@@ -1,0 +1,8 @@
+Engineer: Artem
+Device: Server
+Serial: SRV-2205
+Issue: RAID array is degraded after one disk failed
+Status: Server is running, but redundancy is lost
+Action taken: Checked logs and identified failed disk slot
+Next step: Replace failed disk and rebuild RAID array
+Expected priority: NORMAL

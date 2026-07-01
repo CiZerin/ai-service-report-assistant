@@ -1,0 +1,8 @@
+Engineer: Artem
+Device: MRI Scanner
+Serial: MRI-9001
+Issue: Device does not start and patient workflow is stopped
+Status: System is down, customer cannot use the device
+Action taken: Checked power input and collected error logs
+Next step: Escalate to senior engineer and replace power module
+Expected priority: HIGH
