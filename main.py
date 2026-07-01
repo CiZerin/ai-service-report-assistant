@@ -6,6 +6,10 @@ from structured_report import create_structured_report
 from validator import has_empty_required_fields
 
 def get_service_case_from_user():
+    print("=== AI Service Report Assistant ===")
+    print("Enter service case details below.")
+    print()
+
     engineer = input("Enter engineer name: ").strip()
     device = input("Enter device model: ").strip()
     serial = input("Enter serial number: ").strip()
@@ -45,6 +49,8 @@ def main():
     save_report(txt_filename, report)
     save_json_report(json_filename, structured_report)
 
+    print()
+    print("Report created successfully.")
     print(f"Text report saved to: {txt_filename}")
     print(f"JSON report saved to: {json_filename}")
 
