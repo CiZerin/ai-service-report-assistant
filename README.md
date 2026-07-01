@@ -13,22 +13,26 @@ The main goal is to build a practical tool that can:
 * detect fault priority;
 * generate a readable `.txt` service report;
 * generate a structured Python dictionary;
+* save the readable report to a `.txt` file;
 * save the structured report to a `.json` file;
+* create timestamped report filenames;
 * validate required fields before creating reports.
 
 In the future, this project will be prepared for AI API integration.
 
-## Current features
+## Current MVP features
 
 * User input through the terminal
 * Basic input cleaning with `.strip()`
 * Required fields validation
-* Fault priority detection
+* Fault priority detection: `LOW`, `NORMAL`, `HIGH`, or `CHECK REQUIRED`
 * Text service report generation
 * Structured report generation as Python `dict`
 * JSON report export
-* Report saving to `reports/service_report.txt`
-* JSON saving to `reports/service_report.json`
+* Automatic `reports/` folder creation
+* Timestamped report filenames
+* Matching `.txt` and `.json` report names for each service case
+* Example service cases for manual testing
 * Organized project structure
 * Git and GitHub version control
 
@@ -43,15 +47,18 @@ ai-service-report-assistant/
 ├── file_writer.py
 ├── validator.py
 ├── examples/
-│   └── sample_notes.txt
-├── reports/
-│   ├── service_report.txt
-│   └── service_report.json
+│   ├── sample_notes.txt
+│   ├── low_priority_case.txt
+│   ├── medium_priority_case.txt
+│   └── high_priority_case.txt
 ├── learning/
 │   └── week_01/
 ├── README.md
 └── .gitignore
 ```
+
+Generated reports are saved automatically in the `reports/` folder when the program runs.
+
 
 ## How to run
 
@@ -61,9 +68,12 @@ Open the project folder in the terminal and run:
 python main.py
 ```
 
-Then enter the requested service case information:
+The program will ask for service case information:
 
 ```text
+=== AI Service Report Assistant ===
+Enter service case details below.
+
 Enter engineer name:
 Enter device model:
 Enter serial number:
@@ -73,12 +83,16 @@ Enter action taken:
 Enter next step:
 ```
 
-The generated reports will be saved here:
+After the report is created, the program shows where the files were saved:
 
 ```text
-reports/service_report.txt
-reports/service_report.json
+Report created successfully.
+Text report saved to: reports/service_report_2026-07-01_09-52-13.txt
+JSON report saved to: reports/service_report_2026-07-01_09-52-13.json
 ```
+
+Each run creates a new pair of timestamped report files.
+
 
 ## Example text output
 
@@ -117,6 +131,26 @@ Next step: Replace disk
 }
 ```
 
+## Test service cases
+
+The `examples/` folder contains simple manual test cases:
+
+```text
+examples/
+├── low_priority_case.txt
+├── medium_priority_case.txt
+└── high_priority_case.txt
+```
+
+These files can be used to manually test priority detection:
+
+* `low_priority_case.txt` — minor printer alignment issue, expected priority: `LOW`
+* `medium_priority_case.txt` — degraded RAID array, expected priority: `NORMAL`
+* `high_priority_case.txt` — device does not start, expected priority: `HIGH`
+
+At this stage, the examples are used manually by copying the data into the terminal when running `python main.py`.
+
+
 ## Learning progress
 
 ### Week 1
@@ -152,10 +186,28 @@ Next step: Replace disk
 * Light refactoring of `main.py`
 * Preparing the project for future AI API integration
 
+### Week 4
+
+* First MVP version of the project
+* Timestamped report filenames
+* Matching `.txt` and `.json` report names for each service case
+* Automatic `reports/` folder creation
+* Improved CLI messages
+* Clear final save paths in the terminal
+* Manual test cases for `LOW`, `NORMAL`, and `HIGH` priority
+* Improved priority detection rules
+* Generated reports excluded from Git tracking
+* README updated for GitHub portfolio presentation
+
+
 ## Next steps
 
-* Improve report file naming
+Planned improvements for future versions:
+
 * Show exactly which required fields are missing
 * Add better error handling
-* Read input from example files
+* Read service case data directly from example files
+* Add report creation date and time inside the report content
+* Improve priority detection rules
 * Prepare for future AI API integration
+
