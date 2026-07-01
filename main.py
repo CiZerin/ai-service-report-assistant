@@ -1,3 +1,4 @@
+from datetime import datetime
 from priority import get_priority
 from report_generator import create_report
 from file_writer import save_report, save_json_report
@@ -37,11 +38,15 @@ def main():
     report = create_report(service_case)
     structured_report = create_structured_report(service_case)
 
-    save_report("reports/service_report.txt", report)
-    save_json_report("reports/service_report.json", structured_report)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    txt_filename = f"reports/service_report_{timestamp}.txt"
+    json_filename = f"reports/service_report_{timestamp}.json"
 
-    print(structured_report)
-    print("Reports saved to reports folder")
+    save_report(txt_filename, report)
+    save_json_report(json_filename, structured_report)
+
+    print(f"Text report saved to: {txt_filename}")
+    print(f"JSON report saved to: {json_filename}")
 
 
 main()
