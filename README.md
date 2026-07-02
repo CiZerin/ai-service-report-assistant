@@ -46,13 +46,15 @@ ai-service-report-assistant/
 ├── structured_report.py
 ├── file_writer.py
 ├── validator.py
+├── ai_client.py
 ├── examples/
 │   ├── sample_notes.txt
 │   ├── low_priority_case.txt
 │   ├── medium_priority_case.txt
 │   └── high_priority_case.txt
 ├── learning/
-│   └── week_01/
+│   ├── week_01/
+│   └── week_05/
 ├── README.md
 └── .gitignore
 ```
@@ -199,6 +201,25 @@ At this stage, the examples are used manually by copying the data into the termi
 * Generated reports excluded from Git tracking
 * README updated for GitHub portfolio presentation
 
+## AI API preparation
+
+In Week 5, the project was prepared for future AI API integration using Yandex AI Studio.
+
+Current AI-related additions:
+
+* `.env` is used for real local API credentials and is excluded from Git.
+* `.env.example` shows the required environment variables without real secrets.
+* `learning/week_05/` contains separate learning files for AI API experiments.
+* `ai_client.py` contains a basic `generate_ai_report()` function.
+* The current `main.py` CLI MVP still works without AI API.
+
+Environment variables example:
+
+```text
+YANDEX_API_KEY=your_yandex_api_key_here
+YANDEX_FOLDER_ID=your_yandex_folder_id_here
+YANDEX_MODEL_URI=gpt://your_yandex_folder_id_here/yandexgpt-5.1/latest
+```
 
 ## Next steps
 
