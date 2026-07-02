@@ -4,6 +4,7 @@ from report_generator import create_report
 from file_writer import save_report, save_json_report
 from structured_report import create_structured_report
 from validator import has_empty_required_fields
+from ai_client import generate_ai_report
 
 def get_service_case_from_user():
     print("=== AI Service Report Assistant ===")
@@ -68,11 +69,10 @@ def main():
 
     if use_ai:
         service_case_notes = create_service_case_notes(service_case)
-        print()
-        print("Service case notes prepared for AI:")
-        print(service_case_notes)
-
-    report = create_report(service_case)
+        report = generate_ai_report(service_case_notes)
+    else:
+        report = create_report(service_case)
+        
     structured_report = create_structured_report(service_case)
 
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
