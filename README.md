@@ -18,7 +18,7 @@ The main goal is to build a practical tool that can:
 * create timestamped report filenames;
 * validate required fields before creating reports.
 
-In the future, this project will be prepared for AI API integration.
+The project also includes an optional AI mode using Yandex AI Studio. If AI report generation fails, the program safely falls back to the manual report generator.
 
 ## Current MVP features
 
@@ -35,6 +35,12 @@ In the future, this project will be prepared for AI API integration.
 * Example service cases for manual testing
 * Organized project structure
 * Git and GitHub version control
+* Optional AI-generated report mode
+* Yandex AI Studio integration through `ai_client.py`
+* Safe manual fallback if AI report generation fails
+* Local `.env` configuration for API credentials
+* `.env.example` file with required environment variable names
+
 
 ## Project structure
 
@@ -84,6 +90,23 @@ Enter current status:
 Enter action taken:
 Enter next step:
 ```
+
+The program also asks whether to use AI-generated report mode:
+
+```text
+Use AI-generated report? yes/no:
+```
+
+If the user chooses `no`, the program creates the standard manual report.
+
+If the user chooses `yes`, the program sends prepared service case notes to Yandex AI Studio and saves the AI-generated report as the `.txt` report.
+
+If the AI request fails, the program shows a warning and creates a manual report instead:
+
+```text
+AI request failed. Manual report will be generated instead.
+```
+
 
 After the report is created, the program shows where the files were saved:
 
@@ -201,17 +224,40 @@ At this stage, the examples are used manually by copying the data into the termi
 * Generated reports excluded from Git tracking
 * README updated for GitHub portfolio presentation
 
-## AI API preparation
+## AI mode with Yandex AI Studio
 
-In Week 5, the project was prepared for future AI API integration using Yandex AI Studio.
+The project includes an optional AI-generated report mode using Yandex AI Studio.
 
-Current AI-related additions:
+AI logic is separated into:
+
+```text
+ai_client.py
+```
+
+The main AI function is:
+
+```python
+generate_ai_report(service_case_notes)
+```
+
+The main CLI program asks the user:
+
+```text
+Use AI-generated report? yes/no:
+```
+
+If the user chooses `no`, the program uses the standard manual report generator.
+
+If the user chooses `yes`, the program prepares service case notes and sends them to Yandex AI Studio.
+
+If the AI request fails, the program safely falls back to the manual report generator.
+
+Current AI-related files:
 
 * `.env` is used for real local API credentials and is excluded from Git.
 * `.env.example` shows the required environment variables without real secrets.
-* `learning/week_05/` contains separate learning files for AI API experiments.
-* `ai_client.py` contains a basic `generate_ai_report()` function.
-* The current `main.py` CLI MVP still works without AI API.
+* `ai_client.py` contains `generate_ai_report()`.
+* `main.py` can use AI mode or manual mode.
 
 Environment variables example:
 
@@ -221,14 +267,18 @@ YANDEX_FOLDER_ID=your_yandex_folder_id_here
 YANDEX_MODEL_URI=gpt://your_yandex_folder_id_here/yandexgpt-5.1/latest
 ```
 
+Important: never commit the real `.env` file to GitHub.
+
+
 ## Next steps
 
 Planned improvements for future versions:
 
 * Show exactly which required fields are missing
-* Add better error handling
+* Improve AI error handling
 * Read service case data directly from example files
 * Add report creation date and time inside the report content
 * Improve priority detection rules
-* Prepare for future AI API integration
+* Add clearer terminal messages for manual mode and AI mode
+
 
