@@ -30,6 +30,17 @@ def get_service_case_from_user():
 
     return service_case
 
+def ask_use_ai():
+    answer = input("Use AI-generated report? yes/no: ").strip().lower()
+
+    if answer == "yes" or answer == "y":
+        return True
+    if answer == "no" or answer == "n":
+        return False
+    
+    print("Unknown answer. Manual report will be used.")
+    return False
+
 
 def main():
     service_case = get_service_case_from_user()
@@ -37,6 +48,8 @@ def main():
     if has_empty_required_fields(service_case):
         print("Warning: Some required fields are empty. Report was not created.")
         exit()
+
+    use_ai = ask_use_ai()
 
     service_case["priority"] = get_priority(service_case["issue"])
     report = create_report(service_case)
