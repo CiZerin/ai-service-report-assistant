@@ -41,6 +41,19 @@ def ask_use_ai():
     print("Unknown answer. Manual report will be used.")
     return False
 
+def create_service_case_notes(service_case):
+    notes = f"""
+Engineer: {service_case["engineer"]}
+Device: {service_case["device"]}
+Serial number: {service_case["serial"]}
+Issue: {service_case["issue"]}
+Current status: {service_case["status"]}
+Action taken: {service_case["action_taken"]}
+Next step: {service_case["next_step"]}
+Priority: {service_case["priority"]}
+"""
+    return notes
+
 
 def main():
     service_case = get_service_case_from_user()
@@ -52,6 +65,13 @@ def main():
     use_ai = ask_use_ai()
 
     service_case["priority"] = get_priority(service_case["issue"])
+
+    if use_ai:
+        service_case_notes = create_service_case_notes(service_case)
+        print()
+        print("Service case notes prepared for AI:")
+        print(service_case_notes)
+
     report = create_report(service_case)
     structured_report = create_structured_report(service_case)
 
