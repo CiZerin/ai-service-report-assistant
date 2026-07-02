@@ -69,10 +69,17 @@ def main():
 
     if use_ai:
         service_case_notes = create_service_case_notes(service_case)
-        report = generate_ai_report(service_case_notes)
+        ai_report = generate_ai_report(service_case_notes)
+
+        if ai_report.startswith("AI report generation failed"):
+            print("AI request failed. Manual report will be generated instead.")
+            report = create_report(service_case)
+        else:
+            report = ai_report
+
     else:
         report = create_report(service_case)
-        
+
     structured_report = create_structured_report(service_case)
 
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
