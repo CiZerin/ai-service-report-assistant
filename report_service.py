@@ -1,7 +1,7 @@
 from priority import get_priority
 from report_generator import create_report
 from structured_report import create_structured_report
-from validator import has_empty_required_fields
+from validator import get_missing_required_fields
 from ai_client import generate_ai_report
 
 
@@ -20,10 +20,13 @@ Priority: {service_case["priority"]}
 
 
 def create_service_report(service_case, use_ai=False):
-    if has_empty_required_fields(service_case):
+    missing_fields = get_missing_required_fields(service_case)
+
+    if missing_fields:
         return {
             "success": False,
             "error": "Some required fields are empty.",
+            "missing_fields": missing_fields,
             "text_report": None,
             "structured_report": None,
             "used_ai": False,
@@ -54,6 +57,7 @@ def create_service_report(service_case, use_ai=False):
     return {
         "success": True,
         "error": None,
+        "missing_fields": [],
         "text_report": text_report,
         "structured_report": structured_report,
         "used_ai": used_ai,
