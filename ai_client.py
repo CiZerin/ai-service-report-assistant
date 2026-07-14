@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from openai import OpenAI, OpenAIError
+from prompts import create_service_report_prompt
 
 
 def generate_ai_report(service_case_notes):
@@ -20,21 +21,7 @@ def generate_ai_report(service_case_notes):
         base_url="https://ai.api.cloud.yandex.net/v1"
     )
 
-    prompt = f"""
-Turn the following rough service notes into a clear service report.
-
-Use this structure:
-- Device
-- Serial number
-- Issue
-- Current status
-- Action taken
-- Recommended next step
-- Customer summary
-
-Service notes:
-{service_case_notes}
-"""
+    prompt = create_service_report_prompt(service_case_notes)
 
     try:
         response = client.chat.completions.create(
