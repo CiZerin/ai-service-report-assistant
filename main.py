@@ -11,6 +11,12 @@ def main():
 
     if not result["success"]:
         print(f"Warning: {result['error']} Report was not created.")
+
+        if result["missing_fields"]:
+            print("Missing required fields:")
+            for field in result["missing_fields"]:
+                print(f"- {field}")
+
         return
 
     if result["used_fallback"]:
