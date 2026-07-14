@@ -41,31 +41,88 @@ The project also includes an optional AI mode using Yandex AI Studio. If AI repo
 * Local `.env` configuration for API credentials
 * `.env.example` file with required environment variable names
 
+## Current architecture direction
+
+The project is being prepared for future backend, web interface, and Telegram bot support.
+
+Current direction:
+
+```text
+Core report logic
+↓
+Interfaces:
+- CLI now
+- Web later
+- Telegram later
+```
+
+The CLI is no longer responsible for all business logic. It now works mainly as an input interface, while report generation is handled by the service layer.
+
+This makes the project easier to extend later with FastAPI, a web form, or a Telegram bot without duplicating report generation logic.
+
+
 
 ## Project structure
 
 ```text
 ai-service-report-assistant/
 ├── main.py
+├── report_service.py
 ├── priority.py
 ├── report_generator.py
 ├── structured_report.py
-├── file_writer.py
 ├── validator.py
 ├── ai_client.py
+├── file_writer.py
+├── interfaces/
+│   ├── __init__.py
+│   └── cli.py
+├── storage/
+│   ├── __init__.py
+│   └── file_storage.py
 ├── examples/
 │   ├── sample_notes.txt
 │   ├── low_priority_case.txt
 │   ├── medium_priority_case.txt
 │   └── high_priority_case.txt
 ├── learning/
-│   ├── week_01/
-│   └── week_05/
 ├── README.md
+├── .env.example
 └── .gitignore
 ```
 
-Generated reports are saved automatically in the `reports/` folder when the program runs.
+The project is now split into simple layers:
+
+```text
+main.py
+```
+
+Program entry point.
+
+```text
+interfaces/cli.py
+```
+
+Terminal interface. It collects service case data from the engineer.
+
+```text
+report_service.py
+```
+
+Core report logic. It validates input, detects priority, uses AI mode if requested, keeps manual fallback, and creates both text and structured reports.
+
+```text
+storage/file_storage.py
+```
+
+Report saving logic. It creates timestamped `.txt` and `.json` report files.
+
+```text
+ai_client.py
+```
+
+Yandex AI Studio integration. If AI is unavailable or `.env` values are missing, the program safely falls back to manual report generation.
+
 
 
 ## How to run
